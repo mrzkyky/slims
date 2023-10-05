@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  s9-alpine-web:
+    image: drajathasan/alpine-slims-9:9.4.2
+    container_name: "s9-alpine-web"
+    restart: always
+    ports:
+      - 8800:80
+    volumes:
+      - ./s9:/var/www/localhost/htdocs
+
+  s9-mysql:
+    image: mysql:5.7
+    container_name: "s9-mysql"
+    hostname: 's9mysql'
+    restart: always
+    environment:
+      MYSQL_DATABASE: slims942User
+      MYSQL_USER: slims942User
+      MYSQL_PASSWORD: slims942Password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
